@@ -77,7 +77,7 @@ async function createJob(req, res) {
   }
 }
 
-
+// Get publicly available job and internship listings
 async function getJobs(req, res) {
   try {
     const {
@@ -118,16 +118,22 @@ async function getJobs(req, res) {
       });
     }
 
-    // Limit page size to prevent unnecessarily large responses
-    const page = Math.max(
-      1,
-      Number.parseInt(req.query.page, 10) || 1
-    );
+    // Validate pagination values before placing them in the SQL.
+    // TiDB can reject LIMIT/OFFSET values passed as prepared parameters.
+    const requestedPage = Number.parseInt(req.query.page, 10);
+    const requestedLimit = Number.parseInt(req.query.limit, 10);
 
-    const limit = Math.min(
-      50,
-      Math.max(1, Number.parseInt(req.query.limit, 10) || 10)
-    );
+    const limit =
+      Number.isSafeInteger(requestedLimit) && requestedLimit > 0
+        ? Math.min(50, requestedLimit)
+        : 10;
+
+    const maxPage = Math.floor(Number.MAX_SAFE_INTEGER / limit) + 1;
+
+    const page =
+      Number.isSafeInteger(requestedPage) && requestedPage > 0
+        ? Math.min(requestedPage, maxPage)
+        : 1;
 
     const offset = (page - 1) * limit;
 
@@ -173,7 +179,7 @@ async function getJobs(req, res) {
 
     const whereClause = conditions.join(" AND ");
 
-    // Get the total number of matching listings
+    // Get the total number of matching listings.
     const [countRows] = await pool.execute(
       `SELECT COUNT(*) AS total
        FROM jobs j
@@ -183,7 +189,8 @@ async function getJobs(req, res) {
       values
     );
 
-    // Retrieve the current page of listings
+    // Retrieve the current page.
+    // limit and offset are validated integers, not user-supplied SQL.
     const [jobs] = await pool.execute(
       `SELECT
          j.id,
@@ -207,8 +214,8 @@ async function getJobs(req, res) {
          ON rp.user_id = j.recruiter_id
        WHERE ${whereClause}
        ORDER BY j.created_at DESC
-       LIMIT ? OFFSET ?`,
-      [...values, limit, offset]
+       LIMIT ${limit} OFFSET ${offset}`,
+      values
     );
 
     const total = Number(countRows[0].total);
@@ -233,7 +240,7 @@ async function getJobs(req, res) {
   }
 }
 
-
+// Approve or reject a pending job listing
 async function moderateJob(req, res) {
   try {
     const jobId = Number(req.params.id);
@@ -322,7 +329,7 @@ async function moderateJob(req, res) {
   }
 }
 
-
+// Get listings created by the authenticated recruiter
 async function getRecruiterJobs(req, res) {
   try {
     const recruiterId = req.user.id;
@@ -366,7 +373,7 @@ async function getRecruiterJobs(req, res) {
   }
 }
 
-
+// Get pending listings for administrator review
 async function getPendingJobs(req, res) {
   try {
     const [jobs] = await pool.execute(
