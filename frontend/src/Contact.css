@@ -1,0 +1,324 @@
+
+.contact-page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background:
+    radial-gradient(ellipse at 15% 20%, rgba(221, 212, 255, 0.43), transparent 35%),
+    radial-gradient(ellipse at 90% 75%, rgba(244, 225, 255, 0.5), transparent 38%),
+    #fbfaff;
+}
+
+.contact-navbar {
+  position: relative;
+  z-index: 2;
+  min-height: 82px;
+  padding: 0 max(32px, calc((100% - 1160px) / 2));
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(234, 232, 243, 0.82);
+  background: rgba(251, 250, 255, 0.82);
+  backdrop-filter: blur(18px);
+}
+
+.contact-home-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #77738e;
+  font-size: 12px;
+  font-weight: 700;
+  transition: color 180ms ease, transform 180ms ease;
+}
+
+.contact-home-link:hover {
+  color: #7157e8;
+  transform: translateX(-3px);
+}
+
+.contact-main {
+  position: relative;
+  flex: 1;
+  min-height: 650px;
+  padding: 72px 20px;
+  display: grid;
+  place-items: center;
+  isolation: isolate;
+}
+
+.contact-decoration {
+  position: absolute;
+  z-index: -1;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.contact-decoration-one {
+  top: 12%;
+  left: max(6%, calc((100% - 920px) / 2));
+  width: 105px;
+  height: 105px;
+  border: 1px solid rgba(130, 104, 232, 0.22);
+  background: linear-gradient(135deg, rgba(228, 219, 255, 0.6), rgba(243, 237, 255, 0.15));
+}
+
+.contact-decoration-two {
+  right: max(7%, calc((100% - 950px) / 2));
+  bottom: 13%;
+  width: 68px;
+  height: 68px;
+  background: linear-gradient(135deg, #e9e1ff, #f8dff0);
+  opacity: 0.8;
+}
+
+.contact-card {
+  width: min(100%, 650px);
+  padding: 52px 54px 38px;
+  border: 1px solid rgba(255, 255, 255, 0.95);
+  border-radius: 27px;
+  background: rgba(255, 255, 255, 0.89);
+  box-shadow: 0 30px 85px rgba(70, 54, 142, 0.11);
+  text-align: center;
+  backdrop-filter: blur(18px);
+}
+
+.contact-icon {
+  width: 59px;
+  height: 59px;
+  margin: 0 auto 23px;
+  display: grid;
+  place-items: center;
+  border: 1px solid #e9e1ff;
+  border-radius: 19px;
+  color: #7457e3;
+  background: linear-gradient(145deg, #f1edff, #eae3ff);
+  box-shadow: 0 8px 20px rgba(113, 87, 232, 0.1);
+}
+
+.contact-card h1 {
+  margin: 15px 0 0;
+  color: #191a35;
+  font-family: "Manrope", sans-serif;
+  font-size: clamp(38px, 6vw, 54px);
+  font-weight: 800;
+  line-height: 1.17;
+  letter-spacing: -2.2px;
+}
+
+.contact-description {
+  max-width: 440px;
+  margin: 19px auto 0;
+  color: #838198;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.contact-email-card {
+  margin-top: 31px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  border: 1px solid #eae5f8;
+  border-radius: 17px;
+  background: linear-gradient(135deg, #fcfbff, #f7f4ff);
+  box-shadow: 0 7px 22px rgba(73, 58, 135, 0.035);
+  text-align: left;
+  transition: box-shadow 200ms ease, border-color 200ms ease;
+}
+
+.contact-email-card:hover {
+  border-color: #d8cdff;
+  box-shadow: 0 15px 30px rgba(73, 58, 135, 0.1);
+}
+
+.contact-email-icon {
+  width: 45px;
+  height: 45px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border-radius: 13px;
+  color: #7157e8;
+  background: #eee8ff;
+}
+
+.contact-email-copy {
+  min-width: 0;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.contact-email-label {
+  color: #9893af;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1.1px;
+}
+
+.contact-email-copy strong {
+  overflow-wrap: anywhere;
+  color: #393451;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.contact-email-arrow {
+  flex: 0 0 auto;
+  color: #856be7;
+}
+
+.contact-send-button {
+  margin-top: 20px;
+}
+
+.contact-divider {
+  height: 1px;
+  margin-top: 32px;
+  background: #efedf7;
+}
+
+.contact-note {
+  margin: 19px 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: #9893aa;
+  font-size: 10px;
+}
+
+.contact-note svg {
+  color: #856be7;
+}
+
+.contact-footer {
+  min-height: 74px;
+  padding: 18px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  border-top: 1px solid #ece9f5;
+  background: rgba(255, 255, 255, 0.62);
+}
+
+.contact-footer-home {
+  color: #7157e8;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px;
+  font-weight: 800;
+}
+
+.contact-footer > span {
+  color: #86829b;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+@media (max-width: 600px) {
+  .contact-navbar {
+    min-height: 72px;
+    padding-inline: 20px;
+  }
+
+  .contact-main {
+    min-height: auto;
+    padding: 50px 19px;
+  }
+
+  .contact-card {
+    padding: 36px 22px 28px;
+    border-radius: 23px;
+  }
+
+  .contact-card h1 {
+    letter-spacing: -1.6px;
+  }
+
+  .contact-description {
+    font-size: 12px;
+  }
+
+  .contact-email-card {
+    gap: 10px;
+    padding: 13px;
+  }
+
+  .contact-email-copy strong {
+    font-size: 11px;
+  }
+
+  .contact-email-icon {
+    width: 39px;
+    height: 39px;
+  }
+
+  .contact-decoration-one {
+    left: 2%;
+    width: 60px;
+    height: 60px;
+  }
+
+  .contact-decoration-two {
+    right: 2%;
+    width: 43px;
+    height: 43px;
+  }
+}
+
+/* Contact page hover interactions */
+.contact-card {
+  transition:
+    translate 240ms ease,
+    scale 240ms ease,
+    box-shadow 240ms ease,
+    border-color 240ms ease;
+}
+
+.contact-card:hover {
+  translate: 0 -4px;
+  scale: 1.008;
+  border-color: #e4dcff;
+  box-shadow: 0 38px 95px rgba(70, 54, 142, 0.15);
+}
+
+.contact-icon,
+.contact-send-button {
+  transition:
+    translate 200ms ease,
+    scale 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.contact-icon:hover,
+.contact-send-button:hover {
+  translate: 0 -3px;
+  scale: 1.025;
+}
+
+.contact-home-link,
+.contact-footer-home {
+  transition: color 180ms ease, translate 180ms ease;
+}
+
+.contact-footer-home:hover {
+  translate: 0 -2px;
+  color: #5b43d0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-card,
+  .contact-icon,
+  .contact-send-button,
+  .contact-home-link,
+  .contact-footer-home {
+    transition: none !important;
+    translate: none !important;
+    scale: 1 !important;
+  }
+}
